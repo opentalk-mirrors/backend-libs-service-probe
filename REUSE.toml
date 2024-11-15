@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: OpenTalk Team <mail@opentalk.eu>
+#
+# SPDX-License-Identifier: MIT OR Apache-2.0
+# 
+version = 1
+SPDX-PackageName = "service-probe"
+SPDX-PackageSupplier = "OpenTalk Team <mail@opentalk.eu>"
+SPDX-PackageDownloadLocation = "https://git.opentalk.dev/opentalk/backend/libs/service-probe"
+
+[[annotations]]
+path = ["Cargo.lock", "README.md", "renovate.json"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "OpenTalk Team <mail@opentalk.eu>"
+SPDX-License-Identifier = "MIT OR Apache-2.0"
