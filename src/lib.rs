@@ -33,7 +33,7 @@ use std::{convert::Infallible, net::IpAddr, time::Duration};
 use http_body_util::Full;
 use hyper::{server::conn::http1, service::service_fn, Method, Request, Response, StatusCode};
 use hyper_util::rt::TokioIo;
-use log::{error, info};
+use log::{debug, error, info};
 use snafu::{ResultExt as _, Snafu};
 use tokio::{
     net::{TcpListener, TcpStream},
@@ -72,6 +72,12 @@ impl ServiceState {
     }
 }
 
+impl std::fmt::Display for ServiceState {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.as_str())
+    }
+}
+
 /// The error that can happen during startup of the service probe.
 #[derive(Debug, Snafu)]
 pub enum ProbeStartError {
@@ -89,9 +95,13 @@ pub enum ProbeStartError {
 ///
 /// After this function has been called, requests to the probe endpoint will return the new state.
 pub fn set_service_state(state: ServiceState) {
-    *SERVICE_STATE
+    let mut state_lock = SERVICE_STATE
         .write()
-        .expect("rwlock poisoning should be impossible with the implemented control flow") = state;
+        .expect("rwlock poisoning should be impossible with the implemented control flow");
+    if state != *state_lock {
+        debug!("Service state change: {} to {}.", *state_lock, state);
+        *state_lock = state;
+    }
 }
 
 /// Get the state of the service.
@@ -120,7 +130,8 @@ where
 
     let ip_address: IpAddr = address.into();
 
-    info!("Service readiness probe listening on http://{ip_address}:{port}/");
+    let state = get_service_state();
+    info!("Service readiness probe listening on http://{ip_address}:{port}/ with initial state {state}");
     let listener = TcpListener::bind((ip_address, port))
         .await
         .context(SocketUnavailableSnafu)?;
@@ -150,6 +161,8 @@ pub async fn stop_probe() {
     };
 
     let _ = shutdown_sender.send(());
+
+    debug!("Shutting down service readiness probe");
 
     if let Err(_elapsed) = tokio::time::timeout(SHUTDOWN_GRACE_PERIOD, join_handle).await {
         error!("Error shutting down the service readiness probe");
