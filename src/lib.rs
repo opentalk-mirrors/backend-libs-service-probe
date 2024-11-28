@@ -175,7 +175,7 @@ async fn run_probe_server(listener: TcpListener, mut shutdown_receiver: oneshot:
             accept = listener.accept() => {
                 match accept {
                     Ok((stream, _addr)) => {
-                        handle_accept(stream).await;
+                        _ = tokio::spawn(handle_accept(stream));
                     }
                     Err(e) => {
                         error!("Error accepting connection for service readiness probe: {e:?}");
