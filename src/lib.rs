@@ -12,6 +12,21 @@
 //! Tasks and synchronization throughout this crate uses [`tokio`]
 //! functionality, so the runtime must be present and running when the functions
 //! of this crate are called.
+//!
+//! To start the service probe, add the following code to your service:
+//!
+//! ```no_run
+//! # async {
+//! use service_probe::{start_probe, ServiceState, set_service_state};
+//!
+//! // The probe server is started in the background. Up signals that the services is starting.
+//! start_probe([0u8, 0, 0, 0], 11333, ServiceState::Up).await.unwrap();
+//!
+//! // If everything is ready, we set the state to ready.
+//! set_service_state(ServiceState::Ready);
+//!
+//! # };
+//! ```
 #![deny(
     bad_style,
     missing_debug_implementations,
