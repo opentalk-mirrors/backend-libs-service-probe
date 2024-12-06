@@ -12,6 +12,21 @@
 //! Tasks and synchronization throughout this crate uses [`tokio`]
 //! functionality, so the runtime must be present and running when the functions
 //! of this crate are called.
+//!
+//! To start the service probe, add the following code to your service:
+//!
+//! ```no_run
+//! # async {
+//! use service_probe::{start_probe, ServiceState, set_service_state};
+//!
+//! // The probe server is started in the background. Up signals that the services is starting.
+//! start_probe([0u8, 0, 0, 0], 11333, ServiceState::Up).await.unwrap();
+//!
+//! // If everything is ready, we set the state to ready.
+//! set_service_state(ServiceState::Ready);
+//!
+//! # };
+//! ```
 #![deny(
     bad_style,
     missing_debug_implementations,
@@ -116,7 +131,11 @@ pub fn get_service_state() -> ServiceState {
 /// Start the probe HTTP service.
 ///
 /// This opens a HTTP v1 server on the selected address and port which will serve the state in `GET` requests to `/health`.
-pub async fn start_probe<A>(address: A, port: u16) -> Result<(), ProbeStartError>
+pub async fn start_probe<A>(
+    address: A,
+    port: u16,
+    initial_state: ServiceState,
+) -> Result<(), ProbeStartError>
 where
     A: Into<IpAddr>,
 {
@@ -130,12 +149,13 @@ where
 
     let ip_address: IpAddr = address.into();
 
-    let state = get_service_state();
-    info!("Service readiness probe listening on http://{ip_address}:{port}/ with initial state {state}");
     let listener = TcpListener::bind((ip_address, port))
         .await
         .context(SocketUnavailableSnafu)?;
+    info!("Service readiness probe listening on http://{ip_address}:{port}/ with initial state {initial_state}");
 
+    // We set the state after the last possible error. If this function errors, it should have no side effects.
+    set_service_state(initial_state);
     let join_handle = tokio::task::spawn(run_probe_server(listener, shutdown_receiver));
 
     *probe_task_handle = Some(ProbeTaskHandle {
