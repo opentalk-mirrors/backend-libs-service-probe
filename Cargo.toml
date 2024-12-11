@@ -9,7 +9,7 @@ license = "MIT OR Apache-2.0"
 name = "service-probe"
 publish = true
 repository = "https://gitlab.opencode.de/opentalk/libs/service-probe"
-version = "0.2.0"
+version = "0.3.0-alpha"
 
 [dependencies]
 http-body-util = "0.1.2"
