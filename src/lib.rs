@@ -224,9 +224,15 @@ async fn handle_request(
     let (status_code, body) = match *req.method() {
         Method::GET => {
             let path = req.uri().path();
+            let state = get_service_state();
             if ["", "/", "/health", "/health/"].contains(&path) {
-                let state = get_service_state().as_str();
-                (StatusCode::OK, state)
+                (StatusCode::OK, state.as_str())
+            } else if ["/ready", "/ready/"].contains(&path) {
+                if state == ServiceState::Ready {
+                    (StatusCode::OK, state.as_str())
+                } else {
+                    (StatusCode::SERVICE_UNAVAILABLE, state.as_str())
+                }
             } else {
                 (StatusCode::NOT_FOUND, "Not found")
             }
