@@ -46,13 +46,14 @@
 use std::{convert::Infallible, net::IpAddr, time::Duration};
 
 use http_body_util::Full;
-use hyper::{server::conn::http1, service::service_fn, Method, Request, Response, StatusCode};
+use hyper::{Method, Request, Response, StatusCode, server::conn::http1, service::service_fn};
 use hyper_util::rt::TokioIo;
 use log::{debug, error, info};
+pub use service_probe_common::ServiceState;
 use snafu::{ResultExt as _, Snafu};
 use tokio::{
     net::{TcpListener, TcpStream},
-    sync::{oneshot, RwLock},
+    sync::{RwLock, oneshot},
     task::JoinHandle,
 };
 
@@ -66,32 +67,6 @@ static PROBE_TASK_HANDLE: RwLock<Option<ProbeTaskHandle>> = RwLock::const_new(No
 
 /// The grace period given to the probe for shutting itself down.
 pub const SHUTDOWN_GRACE_PERIOD: Duration = Duration::from_millis(500);
-
-/// The state of a service
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub enum ServiceState {
-    /// The service is starting up.
-    Up,
-
-    /// The service is started and ready to process requests.
-    Ready,
-}
-
-impl ServiceState {
-    /// Get the [`str`] representation of the [`ServiceState`].
-    pub const fn as_str(&self) -> &'static str {
-        match self {
-            ServiceState::Up => "UP",
-            ServiceState::Ready => "READY",
-        }
-    }
-}
-
-impl std::fmt::Display for ServiceState {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.as_str())
-    }
-}
 
 /// The error that can happen during startup of the service probe.
 #[derive(Debug, Snafu)]
@@ -152,7 +127,9 @@ where
     let listener = TcpListener::bind((ip_address, port))
         .await
         .context(SocketUnavailableSnafu)?;
-    info!("Service readiness probe listening on http://{ip_address}:{port}/ with initial state {initial_state}");
+    info!(
+        "Service readiness probe listening on http://{ip_address}:{port}/ with initial state {initial_state}"
+    );
 
     // We set the state after the last possible error. If this function errors, it should have no side effects.
     set_service_state(initial_state);
