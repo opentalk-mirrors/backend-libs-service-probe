@@ -878,7 +878,7 @@ dependencies = [
 
 [[package]]
 name = "service-probe"
-version = "0.3.0"
+version = "0.4.0-alpha"
 dependencies = [
  "http-body-util",
  "hyper",
@@ -891,7 +891,7 @@ dependencies = [
 
 [[package]]
 name = "service-probe-client"
-version = "0.3.0"
+version = "0.4.0-alpha"
 dependencies = [
  "log",
  "reqwest",
@@ -902,7 +902,7 @@ dependencies = [
 
 [[package]]
 name = "service-probe-common"
-version = "0.3.0"
+version = "0.4.0-alpha"
 
 [[package]]
 name = "shlex"
