@@ -10,5 +10,5 @@ version = 1
 [[annotations]]
 SPDX-FileCopyrightText = "OpenTalk Team <mail@opentalk.eu>"
 SPDX-License-Identifier = "MIT OR Apache-2.0"
-path = ["CHANGELOG.md", "Cargo.lock", "README.md", "renovate.json"]
+path = ["**/README.md", "CHANGELOG.md", "Cargo.lock", "renovate.json"]
 precedence = "aggregate"
