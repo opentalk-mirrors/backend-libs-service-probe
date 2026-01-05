@@ -10,7 +10,7 @@ will spin up its own minimalistic HTTP server.
 
 The following endpoints are provided (they can be used with or without trailing slash):
 
-| Endpoints              | Response body   | HTTP Status Code         |
-+------------------------+-----------------+--------------------------+
-| `/`, `/health`         | `UP` or `READY` | `200`                    |
-| `/ready`               | `READY`         | if ready `200` else `503`|
+| Endpoints      | Response body   | HTTP Status Code          |
+| -------------- | --------------- | ------------------------- |
+| `/`, `/health` | `UP` or `READY` | `200`                     |
+| `/ready`       | `READY`         | if ready `200` else `503` |
