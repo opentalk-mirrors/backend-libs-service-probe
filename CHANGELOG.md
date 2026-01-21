@@ -5,6 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-01-21
+
+[0.4.0]: https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/compare/v0.3.0...v0.4.0
+
+### 🚀 New features
+
+- Disable request default features ([!80](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/80))
+
+### 🐛 Bug fixes
+
+- (docs) Broken table in README.md ([!73](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/73))
+
+### 📚 Documentation
+
+- Publish README on crates.io ([!73](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/73))
+- Start README.md with the main purpose of the crate ([!73](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/73))
+
+### 📦 Dependencies
+
+- (deps) Update rust crate log to v0.4.29 ([!57](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/57))
+- (deps) Update pre-commit hook embarkstudios/cargo-deny to v0.18.7 ([!55](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/55))
+- (deps) Update rust crate hyper-util to v0.1.18 ([!53](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/53))
+- (deps) Update pre-commit hook markdownlint/markdownlint to v0.15.0 ([!56](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/56))
+- (deps) Lock file maintenance ([!50](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/50))
+- (deps) Update rust crate hyper-util to v0.1.19 ([!58](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/58))
+- (deps) Update pre-commit hook embarkstudios/cargo-deny to v0.18.8 ([!59](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/59))
+- (deps) Update rust crate reqwest to v0.12.25 ([!62](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/62))
+- (deps) Update pre-commit hook embarkstudios/cargo-deny to v0.18.9 ([!61](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/61))
+- (deps) Lock file maintenance ([!60](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/60))
+- (deps) Update git.opentalk.dev:5050/opentalk/backend/containers/rust docker tag to v1.92.0 ([!63](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/63))
+- (deps) Update rust crate reqwest to v0.12.26 ([!64](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/64))
+- (deps) Lock file maintenance ([!65](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/65))
+- (deps) Update rust crate reqwest to v0.12.27 ([!66](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/66))
+- (deps) Update rust crate reqwest to v0.12.28 ([!67](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/67))
+- (deps) Update pre-commit hook andrejorsula/pre-commit-cargo to v0.5.0 ([!68](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/68))
+- (deps) Lock file maintenance ([!69](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/69))
+- (deps) Update rust crate tokio to v1.49.0 ([!71](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/71))
+- (deps) Update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.24.0 ([!78](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/78))
+- (deps) Update rust crate url to v2.5.8 ([!74](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/74))
+- (deps) Update pre-commit hook adrienverge/yamllint to v1.38.0 ([!77](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/77))
+- (deps) Update pre-commit hook embarkstudios/cargo-deny to v0.19.0 ([!75](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/75))
+- (deps) Lock file maintenance ([!76](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/76))
+
+### ⚙ Miscellaneous
+
+- Add changelog ([!72](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/72))
+
 ## [0.3.0] - 2025-11-07
 
 [0.3.0]: https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/compare/v0.2.0...v0.3.0
