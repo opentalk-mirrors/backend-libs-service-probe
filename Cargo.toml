@@ -18,11 +18,11 @@ version = "0.4.0-alpha"
 service-probe = { path = "service-probe", version = "0.4.0-alpha" }
 service-probe-common = { path = "service-probe-common", version = "0.4.0-alpha" }
 
-http-body-util = "0.1.2"
-hyper = { version = "1.5.0", features = ["http1", "server"] }
-hyper-util = { version = "0.1.10", features = ["tokio"] }
-log = "0.4.22"
-reqwest = "0.12.24"
+http-body-util = "0.1"
+hyper = { version = "1.5", features = ["http1", "server"] }
+hyper-util = { version = "0.1", features = ["tokio"] }
+log = "0.4"
+reqwest = { version = "0.13", default-features = false }
 snafu = "0.8.5"
-tokio = { version = "1.41.1", features = ["macros", "net", "rt", "sync"] }
+tokio = { version = "1.41", features = ["macros", "net", "rt", "sync"] }
 url = "2.5.7"
