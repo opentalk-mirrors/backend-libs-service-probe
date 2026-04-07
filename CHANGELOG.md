@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-04-07
+
+[0.5.0]: https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/compare/v0.4.0...v0.5.0
+
+### 📦 Dependencies
+
+- (deps) Lock file maintenance ([!79](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/79), [!84](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/84))
+- (deps) Update Rust crate snafu to 0.9.0 ([!85](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/85))
+- (deps) Update git.opentalk.dev:5050/opentalk/backend/containers/rust docker tag to v1.93.0 ([!81](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/81))
+- (deps) Update rust crate tokio to v1.50.0 ([!86](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/86))
+- (deps) Update rust crate hyper to v1.9.0 ([!88](https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/merge_requests/88))
+
 ## [0.4.0] - 2026-01-21
 
 [0.4.0]: https://git.opentalk.dev/opentalk/backend/libs/service-probe/-/compare/v0.3.0...v0.4.0
